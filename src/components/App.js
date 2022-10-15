@@ -1,5 +1,5 @@
 import React from "react";
-import {Route, Router} from "react-router-dom";
+import {Route, Router, Switch} from "react-router-dom";
 
 import StreamList from "./streams/StreamList";
 import StreamCreate from "./streams/StreamCreate";
@@ -15,11 +15,14 @@ const App = () => {
             <Router history={history}>
                 <Header/>
                 <div className="ui container">
-                    <Route path="/" exact component={StreamList}></Route>
-                    <Route path="/stream/new" exact component={StreamCreate}></Route>
-                    <Route path="/stream/edit/:id" exact component={StreamEdit}></Route>
-                    <Route path="/stream/delete/:id" exact component={StreamDelete}></Route>
-                    <Route path="/stream/show" exact component={StreamShow}></Route>
+                    {/* Switch tag only shows one component, not all that match the Route */}
+                    <Switch>
+                        <Route path="/" exact component={StreamList}></Route>
+                        <Route path="/stream/new" exact component={StreamCreate}></Route>
+                        <Route path="/stream/edit/:id" exact component={StreamEdit}></Route>
+                        <Route path="/stream/delete/:id" exact component={StreamDelete}></Route>
+                        <Route path="/stream/:id" exact component={StreamShow}></Route>
+                    </Switch>
                 </div>
             </Router>
         </div>
